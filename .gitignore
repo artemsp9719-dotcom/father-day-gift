@@ -1,0 +1,8 @@
+node_modules/
+dist/
+*.log
+model-work/
+qa/
+*.fbx
+/dad.glb
+/unnamed.png
