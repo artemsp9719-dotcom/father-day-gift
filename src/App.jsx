@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createStage } from './stage.js';
+import { assetUrl } from './asset-url.js';
 import { clamp, smoothstep, getStoryState } from './story.js';
 import '@fontsource/oswald/cyrillic-700.css';
 import '@fontsource/oswald/latin-700.css';
@@ -102,7 +103,7 @@ export function App() {
         </section>
         <div className="character" aria-hidden="true">
           <canvas ref={canvasRef} className="character-canvas" />
-          {!has3d && <img className="character-fallback" src="/assets/dad-still.png" alt="" />}
+          {!has3d && <img className="character-fallback" src={assetUrl('assets/dad-still.png')} alt="" />}
         </div>
         <section className="letter" aria-label="Пожелание от Артема">
           <div className="letter-inner">

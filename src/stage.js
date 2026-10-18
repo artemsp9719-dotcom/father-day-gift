@@ -6,6 +6,7 @@ import { getStoryState } from './story.js';
 import { createStageLighting } from './lighting.js';
 import { createMotionStabilizer } from './model-motion.js';
 import { prepareDanceClip } from './dance-clip.js';
+import { assetUrl } from './asset-url.js';
 
 export function createStage(canvas, options = {}) {
   let reducedMotion = !!options.reducedMotion;
@@ -63,11 +64,11 @@ export function createStage(canvas, options = {}) {
 
   async function loadCustomModel() {
     try {
-      const response = await fetch('/model-config.json', { signal: controller.signal });
+      const response = await fetch(assetUrl('model-config.json'), { signal: controller.signal });
       if (!response.ok) return;
       const config = await response.json();
       if (!config.modelUrl || disposed) return;
-      const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(config.modelUrl);
+      const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(assetUrl(config.modelUrl));
       if (disposed) { disposeObject(gltf.scene); return; }
       const model = gltf.scene;
       model.rotation.y = Number(config.rotationY) || 0;

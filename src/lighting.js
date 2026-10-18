@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { assetUrl } from './asset-url.js';
 
 export function createStageLighting(scene) {
   const ambient = new THREE.HemisphereLight(0xffefd6, 0x4c2430, 0.15);
@@ -63,7 +64,7 @@ export function createStageLighting(scene) {
     '/assets/celebration-mobile-v2.webp',
     '/assets/celebration-mobile.webp',
   ].map(url => {
-    const texture = loader.load(url);
+    const texture = loader.load(assetUrl(url));
     texture.colorSpace = THREE.SRGBColorSpace;
     return texture;
   });
